@@ -41,8 +41,7 @@ pipeline{
                 }
             }
         }
-    }
-    stage('Docker Image Push') {
+        stage('Docker Image Push') {
             steps {
                 script {
                     // Docker hub 에 로그인 하기 위해 사용
@@ -62,12 +61,13 @@ pipeline{
                 }
             }
         }
-    post {
-        cleanup {
-            emailext subject: '$DEFAULT_SUBJECT', 
-                     to: 'exmini673@gmail.com',
-                     body: '$DEFAULT_CONTENT'
-            cleanWs() // Workspace cleanup
+        post {
+            cleanup {
+                emailext subject: '$DEFAULT_SUBJECT', 
+                         to: 'exmini673@gmail.com',
+                         body: '$DEFAULT_CONTENT'
+                cleanWs() // Workspace cleanup
+            }
         }
     }
 }
