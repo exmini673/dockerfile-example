@@ -61,11 +61,12 @@ pipeline{
                 }
             }
         }
+    }
     post {
         cleanup {
             emailext subject: '$DEFAULT_SUBJECT', 
-                     to: 'exmini673@gmail.com',
-                     body: '$DEFAULT_CONTENT'
+                        to: 'exmini673@gmail.com',
+                        body: '$DEFAULT_CONTENT'
             cleanWs() // Workspace cleanup
         }
     }
