@@ -62,7 +62,6 @@ pipeline{
                 }
             }
         }
-    }
     post {
         cleanup {
             emailext subject: '$DEFAULT_SUBJECT', 
