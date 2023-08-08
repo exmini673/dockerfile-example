@@ -18,7 +18,7 @@ pipeline{
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'docker-hub') {
-                        docker.build('hiwill41/httpd', './ubuntu_apache2') // Corrected image name and Dockerfile path
+                        docker.build('hiwill41/httpd', '--no-cache ./ubuntu_apache2') // Corrected image name and Dockerfile path
                     }
                 }
             }
@@ -27,7 +27,7 @@ pipeline{
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'docker-hub') {
-                        docker.build('hiwill41/nginx', './ubuntu_nginx') // Corrected image name and Dockerfile path
+                        docker.build('hiwill41/nginx', '--no-cache ./ubuntu_nginx') // Corrected image name and Dockerfile path
                     }
                 }
             }
@@ -36,7 +36,7 @@ pipeline{
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'docker-hub') {
-                        docker.build('hiwill41/loadbalancer', './ubuntu_nginx_loadbalancer') // Corrected image name and Dockerfile path
+                        docker.build('hiwill41/loadbalancer', '--no-cache ./ubuntu_nginx_loadbalancer') // Corrected image name and Dockerfile path
                     }
                 }
             }
