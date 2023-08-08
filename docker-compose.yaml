@@ -1,0 +1,33 @@
+version: '3'
+services:
+  web1:
+    image: 'hiwill41/apache2'
+    networks:
+      - mynet
+  web2:
+    image: 'hiwill41/nginx'
+    networks:
+      - mynet
+  web3:
+    image: 'hiwill41/apache2'
+    networks:
+      - mynet
+  web4:
+    image: 'hiwill41/nginx'
+    networks:
+      - mynet
+  lb:
+    image: 'hiwill41/loadbalancer'
+    volumes:
+      - type: bind
+        source: ./ubuntu_nginx_loadbalancer/nginx/sites-available
+        target: /etc/nginx/sites-available
+    networks:
+      - mynet
+    ports:
+      - 80:80
+    depends_on:
+      - web1
+      - web2
+networks:
+  mynet:
