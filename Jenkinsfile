@@ -42,6 +42,27 @@ pipeline{
             }
         }
     }
+    stage('Docker Image Push') {
+            steps {
+                script {
+                    // Docker hub 에 로그인 하기 위해 사용
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub') {
+                        def httpd_img = docker.image('hiwill41/httpd')
+                        def nginx_img = docker.image('hiwill41/nginx')
+                        def loadbalancer_img = docker.image('hiwill41/loadbalancer')
+                        
+                        httpd_img.push('latest')
+                        nginx_img.push('latest')
+                        loadbalancer_img.push('latest')
+                        
+                        httpd_img.push('2.5')
+                        nginx_img.push('2.5')
+                        loadbalancer_img.push('2.5')
+                    }
+                }
+            }
+        }
+    }
     post {
         cleanup {
             emailext subject: '$DEFAULT_SUBJECT', 
