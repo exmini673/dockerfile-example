@@ -1,4 +1,4 @@
-v$script = <<-SCRIPT
+$script = <<-SCRIPT
 sudo apt-get update -y
 sudo apt-get install -y ca-certificates curl gnupg
 sudo install -m 0755 -d /etc/apt/keyrings
